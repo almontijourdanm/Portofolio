@@ -77,7 +77,7 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
 
     return {
       success: true,
-      message: "Thank you for reaching out! Your message has been received. I typically respond within 24-48 hours during business days."
+      message: "Thank you for reaching out! Your message has been received to Almonti. I typically respond within 24-48 hours during business days."
     }
   } catch (error) {
     console.error("Form submission error:", error)

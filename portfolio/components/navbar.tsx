@@ -64,7 +64,7 @@ export default function Navbar() {
           </Link>
           <button
             onClick={() => scrollToSection("skills")}
-            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors "
           >
             Skills
           </button>
@@ -114,7 +114,7 @@ export default function Navbar() {
             </button>
             <Link
               href="/journey"
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors py-2"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block text-center"
               onClick={() => setIsMenuOpen(false)}
             >
               Journey

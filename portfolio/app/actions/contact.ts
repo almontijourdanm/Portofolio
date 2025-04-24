@@ -25,56 +25,65 @@ export type ContactFormState = {
 }
 
 export async function submitContactForm(prevState: ContactFormState, formData: FormData): Promise<ContactFormState> {
-  // Validate form data
-  const validatedFields = contactSchema.safeParse({
-    name: formData.get("name"),
-    email: formData.get("email"),
-    subject: formData.get("subject"),
-    message: formData.get("message"),
-  })
-
-  // Return errors if validation fails
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      success: false,
-      message: "Please fix the errors in the form.",
-    }
-  }
-
-  const { name, email, subject, message } = validatedFields.data;
-
   try {
-    // 1. Save to MongoDB
-    const client = await clientPromise
-    const db = client.db(process.env.MONGODB_DB || "portfolio")
-    await db.collection("contact_messages").insertOne({
-      name,
-      email,
-      subject,
-      message,
-      createdAt: new Date()
+    // Validate form data
+    const validatedFields = contactSchema.safeParse({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      subject: formData.get("subject"),
+      message: formData.get("message"),
     })
 
-    // Send email with better error handling
-    const emailSent = await sendEmail({
-      name,
-      email,
-      subject,
-      message
-    })
+    // Return errors if validation fails
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+        success: false,
+        message: "Please fix the errors in the form.",
+      }
+    }
+
+    const { name, email, subject, message } = validatedFields.data;
+
+    // Safely handle database operations
+    try {
+      const client = await clientPromise
+      const db = client.db(process.env.MONGODB_DB || "portfolio")
+      await db.collection("contact_messages").insertOne({
+        name,
+        email,
+        subject,
+        message,
+        createdAt: new Date()
+      })
+    } catch (dbError) {
+      console.error("Database error:", dbError)
+      // Continue execution - we'll try email even if DB fails
+    }
+
+    // Safely handle email
+    let emailSent = false;
+    try {
+      emailSent = await sendEmail({
+        name,
+        email,
+        subject,
+        message
+      })
+    } catch (emailError) {
+      console.error("Email error:", emailError)
+      // Continue execution - at least we tried
+    }
 
     return {
       success: true,
-      message: emailSent
-        ? "Thank you for reaching out! Your message has been successfully saved and delivered to Almonti. I typically respond within 24-48 hours during business days. I appreciate your patience and look forward to connecting with you soon!"
-        : "Your message has been saved to our database, but there was an issue sending the email notification. I'll still receive your message and will get back to you as soon as possible.",
+      message: "Thank you for reaching out! Your message has been received. I typically respond within 24-48 hours during business days."
     }
   } catch (error) {
     console.error("Form submission error:", error)
     return {
       errors: {
-        _form: ["Failed to send message. Please try again later."],
+        _form: ["There was an issue submitting your message. Please try again or contact me directly at almontimanuputty@gmail.com"],
       },
       success: false,
     }

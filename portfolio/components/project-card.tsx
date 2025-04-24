@@ -67,7 +67,7 @@ export default function ProjectCard({
                 e.stopPropagation()
                 prevImage()
               }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none z-10"
               aria-label="Previous image"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -77,7 +77,7 @@ export default function ProjectCard({
                 e.stopPropagation()
                 nextImage()
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity focus:opacity-100 focus:outline-none z-10"
               aria-label="Next image"
             >
               <ChevronRight className="h-5 w-5" />

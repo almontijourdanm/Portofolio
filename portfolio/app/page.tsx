@@ -67,7 +67,7 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   className="gap-2"
-                  onClick={() => window.open("/resume.pdf", "_blank")}
+                  onClick={() => window.open("/CV - Almonti Jourdan Manuputty 2025.pdf", "_blank")}
                 >
                   Resume <FileText className="h-4 w-4" />
                 </Button>
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
             <div className="mt-8 flex gap-4">
               <motion.a
-                href="https://github.com"
+                href="https://github.com/almontijourdanm"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
@@ -85,7 +85,7 @@ export default function Home() {
                 <Github className="h-6 w-6 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/almonti-manuputty"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -103,7 +103,7 @@ export default function Home() {
                 <Mail className="h-6 w-6 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" />
               </motion.a>
               <motion.a
-                href="/resume.pdf"
+                href="/CV - Almonti Jourdan Manuputty 2025.pdf"
                 download
                 aria-label="Download Resume"
                 whileHover={{ y: -5, scale: 1.2 }}
@@ -293,8 +293,8 @@ export default function Home() {
               description="A mobile and web-based job portal platform with AI-powered CV feedback, optimization, generation, and Telegram chatbot for personalized job alerts."
               technologies={["Next.js", "MongoDB", "GraphQL", "TypeScript", "Vercel"]}
               images={["/Jolt Jordan SS.svg?height=400&width=600"]}
-              githubUrl="https://github.com"
-              liveUrl="https://example.com"
+              githubUrl="https://github.com/almontijourdanm/Jolt-jordan"
+              liveUrl="https://jolt.timmytech.fun/"
               category="fullstack"
               index={0}
             />
@@ -303,8 +303,8 @@ export default function Home() {
               description="An e-commerce platform for reusable drink bottles with integrated product pages, cart system, and responsive design across web and mobile."
               technologies={["Next.js", "MongoDB", "GraphQL", "TypeScript", "Vercel"]}
               images={["/Qarl SS.svg?height=400&width=600"]}
-              githubUrl="https://github.com"
-              liveUrl="https://example.com"
+              githubUrl="https://github.com/almontijourdanm/Qarl"
+              liveUrl="https://qarl.almontijourdanm.com/"
               category="fullstack"
               index={1}
             />
@@ -313,7 +313,7 @@ export default function Home() {
               description="A mobile photo-sharing application inspired by Instagram, with features like post uploads, user profiles, and real-time updates using Redis."
               technologies={["React Native", "GraphQL", "Apollo", "Redis", "Expo", "MongoDB"]}
               images={["/Sparkles SS.svg?height=400&width=600"]}
-              githubUrl="https://github.com"
+              githubUrl="https://github.com/almontijourdanm/Sparkles"
               liveUrl="https://example.com"
               category="mobile"
               index={2}
@@ -356,16 +356,16 @@ export default function Home() {
             <p className="text-gray-400">Full Stack Developer</p>
           </div>
           <div className="flex gap-6">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/almontijourdanm" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/almonti-manuputty" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
             <a href="mailto:almontimanuputty@gmail.com" aria-label="Email">
               <Mail className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
-            <a href="/resume.pdf" download aria-label="Download Resume">
+            <a href="/CV - Almonti Jourdan Manuputty 2025.pdf" download aria-label="Download Resume">
               <Download className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
           </div>

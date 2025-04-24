@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 import ProjectCard, { type ProjectCategory } from "@/components/project-card"
 import ProjectsBackground from "@/components/projects-background"
 import { Badge } from "@/components/ui/badge"
+import { ChevronLeft } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 // Project data based exactly on CV
 const projects = [
@@ -89,6 +92,7 @@ const projects = [
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<ProjectCategory | "all">("all")
+  const router = useRouter()
 
   const filteredProjects =
     activeFilter === "all" ? projects : projects.filter((project) => project.category === activeFilter)
@@ -105,6 +109,23 @@ export default function ProjectsPage() {
     <main className="min-h-screen bg-white dark:bg-gray-900 py-20 px-4 relative">
       <ProjectsBackground />
       <div className="max-w-6xl mx-auto">
+        {/* Back button */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mb-8"
+        >
+          <Button
+            variant="outline"
+            size="sm"
+            className="gap-2"
+            onClick={() => router.back()}
+          >
+            <ChevronLeft className="h-4 w-4" /> Back
+          </Button>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}

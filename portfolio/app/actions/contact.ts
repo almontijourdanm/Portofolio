@@ -1,6 +1,8 @@
 "use server"
 
 import { z } from "zod"
+import clientPromise from "@/lib/mongodb"
+import { sendEmail } from "@/lib/email"
 
 // Form validation schema
 const contactSchema = z.object({
@@ -40,19 +42,36 @@ export async function submitContactForm(prevState: ContactFormState, formData: F
     }
   }
 
-  // In a real application, you would send an email or save to a database here
-  try {
-    // Simulate API delay
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+  const { name, email, subject, message } = validatedFields.data;
 
-    // For demo purposes, we'll just return success
-    // In production, you would integrate with an email service or database
+  try {
+    // 1. Save to MongoDB
+    const client = await clientPromise
+    const db = client.db(process.env.MONGODB_DB || "portfolio")
+    await db.collection("contact_messages").insertOne({
+      name,
+      email,
+      subject,
+      message,
+      createdAt: new Date()
+    })
+
+    // Send email with better error handling
+    const emailSent = await sendEmail({
+      name,
+      email,
+      subject,
+      message
+    })
 
     return {
       success: true,
-      message: "Thank you for your message! I'll get back to you soon.",
+      message: emailSent
+        ? "Thank you for reaching out! Your message has been successfully saved and delivered to Almonti. I typically respond within 24-48 hours during business days. I appreciate your patience and look forward to connecting with you soon!"
+        : "Your message has been saved to our database, but there was an issue sending the email notification. I'll still receive your message and will get back to you as soon as possible.",
     }
   } catch (error) {
+    console.error("Form submission error:", error)
     return {
       errors: {
         _form: ["Failed to send message. Please try again later."],

@@ -19,9 +19,9 @@
 
 | Project      | Description | Tech Stack | Live |
 |--------------|-------------|------------|------|
-| **[Jolt Jordan](https://joltjordan.vercel.app)** | AI-powered job portal with resume optimizer & Telegram bot alerts | Next.js, GraphQL, TypeScript, MongoDB | ✅ |
-| **[Qarl](https://qarl.vercel.app)** | E-commerce site for reusable bottles | Next.js, MongoDB, GraphQL, TypeScript | ✅ |
-| **Snapflex** | Mobile photo-sharing app inspired by Instagram | React Native, GraphQL, Redis, MongoDB | 🔧 |
+| **[Jolt Jordan](https://jolt.timmytech.fun)** | AI-powered job portal with resume optimizer & Telegram bot alerts | Next.js, GraphQL, TypeScript, MongoDB | ✅ |
+| **[Qarl](https://qarl.almontijourdanm.com)** | E-commerce site for reusable bottles | Next.js, MongoDB, GraphQL, TypeScript | ✅ |
+| **Sparkles** | Mobile photo-sharing app inspired by Instagram | React Native, GraphQL, Redis, MongoDB | 🔧 |
 | **Queezy** | AI-based quiz game with dynamic categories | React, Express, PostgreSQL, Gemini AI | 🔧 |
 | **Flex** | Fitness app using ExerciseDB API | React, Express, Redux, PostgreSQL | 🔧 |
 

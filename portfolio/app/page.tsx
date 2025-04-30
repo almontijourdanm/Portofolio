@@ -67,7 +67,7 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   className="gap-2"
-                  onClick={() => window.open("/CV - Almonti Jourdan Manuputty 2025.pdf", "_blank")}
+                  onClick={() => window.open("/CV - Almonti Jourdan Manuputty April 2025.pdf", "_blank")}
                 >
                   Resume <FileText className="h-4 w-4" />
                 </Button>
@@ -103,7 +103,7 @@ export default function Home() {
                 <Mail className="h-6 w-6 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" />
               </motion.a>
               <motion.a
-                href="/CV - Almonti Jourdan Manuputty 2025.pdf"
+                href="/CV - Almonti Jourdan Manuputty April 2025.pdf"
                 download
                 aria-label="Download Resume"
                 whileHover={{ y: -5, scale: 1.2 }}
@@ -367,7 +367,7 @@ export default function Home() {
             <a href="mailto:almontimanuputty@gmail.com" aria-label="Email">
               <Mail className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
-            <a href="/CV - Almonti Jourdan Manuputty 2025.pdf" download aria-label="Download Resume">
+            <a href="/CV - Almonti Jourdan Manuputty April 2025.pdf" download aria-label="Download Resume">
               <Download className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
           </div>

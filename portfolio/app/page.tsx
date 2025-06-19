@@ -197,6 +197,11 @@ export default function Home() {
             <AnimateOnScroll animation="fade-left" delay={400}>
               <div className="space-y-6">
                 <TimelineItem
+                  year="2025-Present"
+                  title="Team Leader, Full Stack Developer"
+                  description="Nomina Teknograsi Indodata"
+                />
+                <TimelineItem 
                   year="2024-2025"
                   title="Hacktiv8 Coding Bootcamp"
                   description="Full Stack JavaScript Immersive Program"

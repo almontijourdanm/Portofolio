@@ -377,8 +377,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard
               title="DinoEscape"
-              description="A UI/UX design project for a dinosaur-themed mobile game landing page created using Canva. Features responsive design elements, engaging visuals, and an intuitive user flow."
-              technologies={[
+              description="A UI/UX design project for a dinosaur-themed travel and tour service website created using Canva. Features interactive destination galleries, immersive prehistoric expedition itineraries, and seamless booking flows."              technologies={[
                 "Canva",
                 "UI/UX Design",
                 "Responsive Design",

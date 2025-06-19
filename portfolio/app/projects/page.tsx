@@ -14,8 +14,8 @@ const projects = [
   {
     title: "DinoEscape",
     description:
-      "A UI/UX design project for a dinosaur-themed mobile game landing page created using Canva. Features responsive design elements, engaging visuals, and an intuitive user flow to maximize conversion.",
-    technologies: ["Canva", "UI/UX Design", "Responsive Design", "Visual Design"],
+      "A UI/UX design project for a dinosaur-themed travel and tour service website created using Canva. Features interactive destination galleries, immersive prehistoric expedition itineraries, and seamless booking flows for paleontology-inspired adventure tours.",    
+      technologies: ["Canva", "UI/UX Design", "Responsive Design", "Visual Design"],
     images: [
       "/DinoEscape1.svg?height=400&width=600",
       "/DinoEscape2.svg?height=400&width=600&text=DinoEscape+Screenshot+2",

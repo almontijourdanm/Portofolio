@@ -383,7 +383,7 @@ export default function Home() {
                 "Responsive Design",
                 "Visual Design",
               ]}
-              images={["/DinoEscape1.svg?height=400&width=600"]}
+              images={["/Dino Escape SS.svg?height=400&width=600"]}
               githubUrl="https://github.com/almontijourdanm/DinoEscape"
               liveUrl="https://dinoescape.almontijourdanm.com/dinoescape"
               category="frontend"

@@ -12,6 +12,23 @@ import { Button } from "@/components/ui/button"
 // Project data based exactly on CV
 const projects = [
   {
+    title: "DinoEscape",
+    description:
+      "A UI/UX design project for a dinosaur-themed mobile game landing page created using Canva. Features responsive design elements, engaging visuals, and an intuitive user flow to maximize conversion.",
+    technologies: ["Canva", "UI/UX Design", "Responsive Design", "Visual Design"],
+    images: [
+      "/DinoEscape1.svg?height=400&width=600",
+      "/DinoEscape2.svg?height=400&width=600&text=DinoEscape+Screenshot+2",
+      "/DinoEscape3.svg?height=400&width=600&text=DinoEscape+Screenshot+3",
+      "/DinoEscape4.svg?height=400&width=600&text=DinoEscape+Screenshot+4",
+      "/DinoEscape5.svg?height=400&width=600&text=DinoEscape+Screenshot+5",
+      "/DinoEscape6.svg?height=400&width=600&text=DinoEscape+Screenshot+6",
+    ],
+    githubUrl: "https://github.com/almontijourdanm/DinoEscape",
+    liveUrl: "https://dinoescape.almontijourdanm.com/dinoescape",
+    category: "frontend" as ProjectCategory,
+  },
+  {
     title: "Jolt Jordan",
     description:
       "A mobile and web-based job portal platform similar to JobStreet or LinkedIn, featuring AI-powered CV feedback, optimization, generation, and Telegram chatbot for personalized job alerts.",

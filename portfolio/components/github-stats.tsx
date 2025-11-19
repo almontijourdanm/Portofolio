@@ -1,32 +1,32 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { Github, GitBranch, GitPullRequest, Star, Code } from "lucide-react"
+import { Github, GitBranch, GitPullRequest, Star, Code, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import AnimateOnScroll from "@/components/animate-on-scroll"
 
-// This would typically come from an API call to GitHub
-const mockGitHubData = {
-  username: "yourusername",
-  avatarUrl: "/placeholder.svg?height=200&width=200",
-  followers: 42,
-  following: 38,
-  publicRepos: 15,
-  totalCommits: 527,
+// Fallback data in case API fails
+const fallbackGitHubData = {
+  username: "almontijourdanm",
+  avatarUrl: "https://github.com/almontijourdanm.png",
+  followers: 1,
+  following: 7,
+  publicRepos: 6,
+  totalCommits: 1417,
   totalPullRequests: 48,
   totalIssues: 32,
-  starsReceived: 73,
+  starsReceived: 0,
   topLanguages: [
-    { name: "JavaScript", percentage: 45, color: "#f1e05a" },
-    { name: "TypeScript", percentage: 30, color: "#3178c6" },
+    { name: "TypeScript", percentage: 40, color: "#3178c6" },
+    { name: "JavaScript", percentage: 35, color: "#f1e05a" },
     { name: "HTML", percentage: 15, color: "#e34c26" },
     { name: "CSS", percentage: 10, color: "#563d7c" },
   ],
   recentActivity: [
-    { type: "commit", repo: "portfolio-website", message: "Add dark mode toggle", date: "2 days ago" },
-    { type: "pullRequest", repo: "e-commerce-app", message: "Fix cart functionality", date: "5 days ago" },
-    { type: "issue", repo: "task-manager", message: "Add filter by priority", date: "1 week ago" },
+    { type: "commit", repo: "Portofolio", message: "Update portfolio with new features", date: "2 days ago" },
+    { type: "commit", repo: "Jolt-jordan", message: "Job portal with AI CV generator", date: "5 days ago" },
+    { type: "commit", repo: "Queezy", message: "AI-generated word quiz game", date: "1 week ago" },
     { type: "star", repo: "react-components", message: "Starred repository", date: "2 weeks ago" },
   ],
   contributionData: [
@@ -46,26 +46,32 @@ const mockGitHubData = {
 }
 
 export default function GitHubStats() {
-  const [data, setData] = useState(mockGitHubData)
-  const [isLoading, setIsLoading] = useState(false)
+  const [data, setData] = useState(fallbackGitHubData)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  // In a real implementation, you would fetch data from GitHub API
-  // useEffect(() => {
-  //   const fetchGitHubData = async () => {
-  //     setIsLoading(true)
-  //     try {
-  //       const response = await fetch('/api/github-stats')
-  //       const data = await response.json()
-  //       setData(data)
-  //     } catch (error) {
-  //       console.error('Error fetching GitHub data:', error)
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
-  //
-  //   fetchGitHubData()
-  // }, [])
+  useEffect(() => {
+    const fetchGitHubData = async () => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        const response = await fetch('/api/github-stats')
+        if (!response.ok) {
+          throw new Error('Failed to fetch GitHub data')
+        }
+        const fetchedData = await response.json()
+        setData(fetchedData)
+      } catch (error) {
+        console.error('Error fetching GitHub data:', error)
+        setError('Using cached data')
+        // Keep fallback data
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchGitHubData()
+  }, [])
 
   const activityIcons = {
     commit: <Code className="h-4 w-4" />,
@@ -76,6 +82,19 @@ export default function GitHubStats() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {isLoading && (
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <span className="ml-2 text-gray-600 dark:text-gray-400">Loading GitHub data...</span>
+        </div>
+      )}
+      
+      {error && (
+        <div className="bg-yellow-100 dark:bg-yellow-900 border border-yellow-400 text-yellow-700 dark:text-yellow-200 px-4 py-3 rounded mb-6">
+          <p className="text-sm">{error} - Displaying last known data</p>
+        </div>
+      )}
+      
       <AnimateOnScroll animation="fade-up">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* GitHub Profile Summary */}
@@ -148,18 +167,34 @@ export default function GitHubStats() {
           {/* Contribution Graph */}
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             <h3 className="font-semibold text-lg mb-4 dark:text-white">Contribution Activity</h3>
-            <div className="h-60 flex items-end justify-between">
-              {data.contributionData.map((month, index) => (
-                <div key={month.month} className="flex flex-col items-center">
-                  <motion.div
-                    className="w-6 bg-blue-500 dark:bg-blue-600 rounded-t"
-                    initial={{ height: 0 }}
-                    animate={{ height: `${(month.contributions / 80) * 100}%` }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                  />
-                  <span className="text-xs mt-1 text-gray-600 dark:text-gray-400">{month.month}</span>
+            <div className="h-48 flex items-end justify-between gap-1 px-2">
+              {data.contributionData && data.contributionData.length > 0 ? (
+                data.contributionData.map((month, index) => {
+                  const maxContributions = Math.max(...data.contributionData.map(m => m.contributions))
+                  const heightPixels = Math.max((month.contributions / maxContributions) * 160, 8)
+                  
+                  return (
+                    <div key={month.month} className="flex-1 flex flex-col items-center justify-end gap-1">
+                      <motion.div
+                        className="w-full bg-blue-500 dark:bg-blue-600 rounded-t min-h-[8px]"
+                        initial={{ height: 0 }}
+                        animate={{ height: `${heightPixels}px` }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        title={`${month.month}: ${month.contributions} contributions`}
+                      >
+                        <div className="text-xs text-white text-center opacity-0 hover:opacity-100 transition-opacity">
+                          {month.contributions}
+                        </div>
+                      </motion.div>
+                      <span className="text-[10px] text-gray-600 dark:text-gray-400">{month.month}</span>
+                    </div>
+                  )
+                })
+              ) : (
+                <div className="w-full text-center text-gray-500 dark:text-gray-400">
+                  No contribution data available
                 </div>
-              ))}
+              )}
             </div>
           </div>
 

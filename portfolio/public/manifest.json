@@ -1,6 +1,6 @@
 {
-  "name": "AJM Site",
-  "short_name": "AJM",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/ajm-favicon/web-app-manifest-192x192.png",

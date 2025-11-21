@@ -12,6 +12,20 @@ import { Button } from "@/components/ui/button"
 // Project data based exactly on CV
 const projects = [
   {
+    title: "ADYA JAYA Freight Forwarding",
+    description:
+      "A comprehensive freight forwarding and logistics platform offering sea, air, and land freight services. Features real-time shipment tracking, automated rate calculation, customs brokerage, warehousing solutions, and client portal for end-to-end supply chain visibility.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "React"],
+    images: [
+      "/AJT1.svg?height=400&width=600",
+      "/AJT2.svg?height=400&width=600&text=Freight+Screenshot+2",
+      "/AJT3.svg?height=400&width=600&text=Freight+Screenshot+3",
+    ],
+    githubUrl: "https://github.com/almontijourdanm",
+    liveUrl: "https://freightforwarding1.almontijourdanm.com/",
+    category: "fullstack" as ProjectCategory,
+  },
+  {
     title: "DinoEscape",
     description:
       "A UI/UX design project for a dinosaur-themed travel and tour service website created using Canva. Features interactive destination galleries, immersive prehistoric expedition itineraries, and seamless booking flows for paleontology-inspired adventure tours.",    

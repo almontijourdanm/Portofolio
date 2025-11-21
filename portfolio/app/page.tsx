@@ -376,17 +376,18 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard
-              title="DinoEscape"
-              description="A UI/UX design project for a dinosaur-themed travel and tour service website created using Canva. Features interactive destination galleries, immersive prehistoric expedition itineraries, and seamless booking flows."              technologies={[
-                "Canva",
-                "UI/UX Design",
-                "Responsive Design",
-                "Visual Design",
+              title="ADYA JAYA Freight Forwarding"
+              description="A comprehensive logistics platform for sea, air, and land freight services. Features shipment tracking, rate calculation, customs brokerage, and warehousing solutions."
+              technologies={[
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "Vercel",
               ]}
-              images={["/Dino Escape SS.svg?height=400&width=600"]}
-              githubUrl="https://github.com/almontijourdanm/DinoEscape"
-              liveUrl="https://dinoescape.almontijourdanm.com/dinoescape"
-              category="frontend"
+              images={["/AJT1.svg?height=400&width=600"]}
+              githubUrl="https://github.com/almontijourdanm"
+              liveUrl="https://freightforwarding1.almontijourdanm.com/"
+              category="fullstack"
               index={0}
             />
             <ProjectCard

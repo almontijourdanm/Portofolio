@@ -20,6 +20,8 @@ const projects = [
       "/AJT1.svg?height=400&width=600",
       "/AJT2.svg?height=400&width=600&text=Freight+Screenshot+2",
       "/AJT3.svg?height=400&width=600&text=Freight+Screenshot+3",
+      "/AJT4.svg?height=400&width=600&text=Freight+Screenshot+4",
+      "/AJT5.svg?height=400&width=600&text=Freight+Screenshot+5",
     ],
     githubUrl: "https://github.com/almontijourdanm",
     liveUrl: "https://freightforwarding1.almontijourdanm.com/",

@@ -386,7 +386,7 @@ export default function Home() {
                 "Tailwind CSS",
                 "Vercel",
               ]}
-              images={["/AJT1.svg?height=400&width=600"]}
+              images={["/AJT SS.svg?height=400&width=600"]}
               githubUrl="https://github.com/almontijourdanm"
               liveUrl="https://freightforwarding1.almontijourdanm.com/"
               category="fullstack"

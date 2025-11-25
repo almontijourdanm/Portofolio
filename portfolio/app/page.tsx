@@ -106,7 +106,8 @@ export default function Home() {
                   className="gap-2"
                   onClick={() =>
                     window.open(
-                      "/CV-Almonti Jourdan Manuputty June 2025.pdf",
+                      // "/CV-Almonti Jourdan Manuputty June 2025.pdf",
+                      "/CV Almonti Jourdan M.pdf",
                       "_blank"
                     )
                   }
@@ -145,7 +146,8 @@ export default function Home() {
                 <Mail className="h-6 w-6 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" />
               </motion.a>
               <motion.a
-                href="/CV-Almonti Jourdan Manuputty June 2025.pdf"
+                // href="/CV-Almonti Jourdan Manuputty June 2025.pdf"
+                href="/CV Almonti Jourdan M.pdf"
                 download
                 aria-label="Download Resume"
                 whileHover={{ y: -5, scale: 1.2 }}
@@ -487,7 +489,8 @@ export default function Home() {
               <Mail className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
             </a>
             <a
-              href="/CV-Almonti Jourdan Manuputty June 2025.pdf"
+              // href="/CV-Almonti Jourdan Manuputty June 2025.pdf"
+              href="/CV Almonti Jourdan M.pdf"
               download
               aria-label="Download Resume"
             >

@@ -12,6 +12,22 @@ import { Button } from "@/components/ui/button"
 // Project data based exactly on CV
 const projects = [
   {
+    title: "Lume - 3D Product Website",
+    description:
+      "An immersive 3D product showcase website featuring interactive ambient desk lamps. Built with React Three Fiber, it includes scroll-based animations, dynamic lighting transitions, and WebGL 3D models with mouse interaction. Features the Ambient Tree and Steampunk Robot lamp designs with smooth GSAP animations and responsive design.",
+    technologies: ["Next.js", "React Three Fiber", "Three.js", "GSAP", "TypeScript", "Tailwind CSS", "WebGL"],
+    images: [
+      "/Lume1.svg?height=400&width=600",
+      "/Lume2.svg?height=400&width=600&text=Lume+Screenshot+2",
+      "/Lume3.svg?height=400&width=600&text=Lume+Screenshot+3",
+      // "/lume4.svg?height=400&width=600&text=Lume+Screenshot+4",
+      // "/lume5.svg?height=400&width=600&text=Lume+Screenshot+5",
+    ],
+    githubUrl: "https://github.com/almontijourdanm/ambient-tree-desk-light",
+    liveUrl: "https://lume.almontijourdanm.com/",
+    category: "frontend" as ProjectCategory,
+  },
+  {
     title: "ADYA JAYA Freight Forwarding",
     description:
       "A comprehensive freight forwarding and logistics platform offering sea, air, and land freight services. Features real-time shipment tracking, automated rate calculation, customs brokerage, warehousing solutions, and client portal for end-to-end supply chain visibility.",

@@ -378,6 +378,22 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ProjectCard
+              title="Lume - 3D Product Website"
+              description="An immersive 3D product showcase with interactive ambient desk lamps. Features scroll-based animations, dynamic lighting transitions, and WebGL 3D models."
+              technologies={[
+                "Next.js",
+                "React Three Fiber",
+                "Three.js",
+                "GSAP",
+                "TypeScript",
+              ]}
+              images={["/Lume SS.svg?height=400&width=600"]}
+              githubUrl="https://github.com/almontijourdanm/ambient-tree-desk-light"
+              liveUrl="https://lume.almontijourdanm.com/"
+              category="frontend"
+              index={0}
+            />
+            <ProjectCard
               title="ADYA JAYA Freight Forwarding"
               description="A comprehensive logistics platform for sea, air, and land freight services. Features shipment tracking, rate calculation, customs brokerage, and warehousing solutions."
               technologies={[
@@ -390,7 +406,7 @@ export default function Home() {
               githubUrl="https://github.com/almontijourdanm"
               liveUrl="https://freightforwarding1.almontijourdanm.com/"
               category="fullstack"
-              index={0}
+              index={1}
             />
             <ProjectCard
               title="Jolt Jordan"
@@ -405,22 +421,6 @@ export default function Home() {
               images={["/Jolt Jordan SS.svg?height=400&width=600"]}
               githubUrl="https://github.com/almontijourdanm/Jolt-jordan"
               liveUrl="https://jolt.timmytech.fun/"
-              category="fullstack"
-              index={1}
-            />
-            <ProjectCard
-              title="Qarl"
-              description="An e-commerce platform for reusable drink bottles with integrated product pages, cart system, and responsive design across web and mobile."
-              technologies={[
-                "Next.js",
-                "MongoDB",
-                "GraphQL",
-                "TypeScript",
-                "Vercel",
-              ]}
-              images={["/Qarl SS.svg?height=400&width=600"]}
-              githubUrl="https://github.com/almontijourdanm/Qarl"
-              liveUrl="https://qarl.almontijourdanm.com/"
               category="fullstack"
               index={2}
             />

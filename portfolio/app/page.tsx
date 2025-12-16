@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { Suspense } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, Environment, Center } from "@react-three/drei";
 import {
   Github,
   Linkedin,
@@ -10,6 +13,7 @@ import {
   Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { AnimatedModel } from "@/components/animated-model";
 import ProjectCard from "@/components/project-card";
 import SkillBadge from "@/components/skill-badge";
 import TimelineItem from "@/components/timeline-item";
@@ -162,20 +166,53 @@ export default function Home() {
               initial={{ opacity: 0, x: 20, rotate: -5 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-xl"
+              className="relative h-100 md:h-96"
             >
-              <div className="absolute inset-0 bg-blue-500/10 dark:bg-blue-500/20 z-10 rounded-lg"></div>
-              <Image
-                src="/Almonti.svg?height=600&width=600"
-                alt="Almonti Jourdan Manuputty"
-                fill
-                className="object-cover"
-                priority
-              />
+              <Canvas
+                camera={{ position: [0, 2, 8], fov: 50 }}
+                className="w-full h-full"
+                gl={{ alpha: true, antialias: true }}
+                style={{ background: "transparent" }}
+              >
+                <Suspense fallback={null}>
+                  <ambientLight intensity={1.2} />
+                  <directionalLight 
+                    position={[10, 10, 5]} 
+                    intensity={2} 
+                    castShadow
+                  />
+                  <directionalLight 
+                    position={[-10, 5, -5]} 
+                    intensity={1} 
+                  />
+                  <pointLight
+                    position={[0, 5, 5]}
+                    intensity={500}
+                    color="#360f5a"
+                  />
+
+                  <Center>
+                    <AnimatedModel
+                      modelPath="/tripod_-_war_of_the_worlds_2005_riganimated.glb"
+                      scale={0.10}
+                    />
+                  </Center>
+
+                  <Environment preset="sunset" />
+                  <OrbitControls
+                    enableZoom={false}
+                    enablePan={false}
+                    autoRotate
+                    autoRotateSpeed={1}
+                    minPolarAngle={Math.PI / 2.5}
+                    maxPolarAngle={Math.PI / 1.8}
+                  />
+                </Suspense>
+              </Canvas>
 
               {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-500/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl pointer-events-none"></div>
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div>
             </motion.div>
           </FloatingElement>
         </div>
@@ -396,12 +433,7 @@ export default function Home() {
             <ProjectCard
               title="ADYA JAYA Freight Forwarding"
               description="A comprehensive logistics platform for sea, air, and land freight services. Features shipment tracking, rate calculation, customs brokerage, and warehousing solutions."
-              technologies={[
-                "Next.js",
-                "TypeScript",
-                "Tailwind CSS",
-                "Vercel",
-              ]}
+              technologies={["Next.js", "TypeScript", "Tailwind CSS", "Vercel"]}
               images={["/AJT SS.svg?height=400&width=600"]}
               githubUrl="https://github.com/almontijourdanm"
               liveUrl="https://freightforwarding1.almontijourdanm.com/"

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, Center, Bounds } from "@react-three/drei";
 import {
@@ -25,19 +25,46 @@ import HeroBackground from "@/components/hero-background";
 import ParticlesBackground from "@/components/particles-background";
 import TypingEffect from "@/components/typing-effect";
 import FloatingElement from "@/components/floating-element";
-import { motion } from "framer-motion";
+import LoadingScreen from "@/components/loading-screen";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [modelLoaded, setModelLoaded] = useState(false);
+
+  useEffect(() => {
+    // Only hide loading screen when model is loaded
+    if (modelLoaded) {
+      setIsLoading(false);
+    }
+  }, [modelLoaded]);
+
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-900">
-      <Navbar />
+    <>
+      <AnimatePresence mode="sync">
+        {isLoading && (
+          <LoadingScreen 
+            onLoadingComplete={() => {}} 
+            isModelLoaded={modelLoaded}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoading ? 0 : 1 }}
+        transition={{ duration: 0.3 }}
+        className="min-h-screen bg-white dark:bg-gray-900"
+        style={{ visibility: isLoading ? 'hidden' : 'visible' }}
+      >
+        <Navbar />
 
       {/* Hero Section */}
       <section
         id="home"
         className="relative pt-28 pb-20 md:pt-36 md:pb-28 px-4 overflow-hidden"
       >
-        <HeroBackground />
+        {/* <HeroBackground /> */}
         <ParticlesBackground />
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 place-items-center">
           <motion.div
@@ -176,12 +203,11 @@ export default function Home() {
               > */}
             <Canvas
               camera={{ position: [0, 0, 8], fov: 40 }}
-  className="
+              className="
   w-full h-full
   bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.35),transparent_70%)]
   dark:bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.25),transparent_70%)]
 "
-
               gl={{ alpha: true, antialias: true }}
             >
               <ambientLight intensity={1.1} />
@@ -195,6 +221,7 @@ export default function Home() {
                     scale={1.7}
                     position={[0, -5, 0]}
                     autoRotate
+                    onLoaded={() => setModelLoaded(true)}
                   />
                 </Bounds>
               </Suspense>
@@ -576,6 +603,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
-    </main>
+      </motion.main>
+    </>
   );
 }

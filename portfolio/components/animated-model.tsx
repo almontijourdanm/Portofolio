@@ -89,14 +89,14 @@ export function AnimatedModel({
 
       // Try each animation to find one that works
       // Prioritize Walk, then Idle, then others
-      const animationPriority = ["Tripod|CrouchWalk", names[0]];
+      const animationPriority = ["Tripod|Walk", names[0]];
       let primaryAnimation =
         animationPriority.find((name) => names.includes(name)) || names[0];
 
       const action = actions[primaryAnimation];
 
       if (action) {
-        const clip = action.getClip();
+        // const clip = action.getClip();
         action.reset();
         action.setLoop(THREE.LoopRepeat, Infinity);
         action.clampWhenFinished = false;
@@ -132,7 +132,7 @@ export function AnimatedModel({
     }
   }, [actions, names, modelPath]);
 
-  // Update animation mixer and auto-rotate
+  // Update animation mixer and smooth float/rotate
   useFrame((state, delta) => {
     // Manually update mixer to ensure animations play
     if (mixer) {
@@ -140,7 +140,13 @@ export function AnimatedModel({
     }
 
     if (autoRotate && group.current) {
-      group.current.rotation.y += 0.005;
+      const t = state.clock.elapsedTime;
+
+      // FLOAT HALUS (smooth floating)
+      group.current.position.y = position[1] + Math.sin(t * 0.8) * 0.12;
+
+      // ROTATE HALUS (smooth rotation)
+      group.current.rotation.y += 0.003;
     }
   });
 

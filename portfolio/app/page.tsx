@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Center } from "@react-three/drei";
+import { OrbitControls, Environment, Center, Bounds } from "@react-three/drei";
 import {
   Github,
   Linkedin,
@@ -39,11 +39,12 @@ export default function Home() {
       >
         <HeroBackground />
         <ParticlesBackground />
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 place-items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
+            // className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight dark:text-white">
               Hi, I'm <span className="text-gradient">Almonti Jourdan</span>
@@ -161,29 +162,67 @@ export default function Home() {
               </motion.a>
             </div>
           </motion.div>
-          <FloatingElement yOffset={15} duration={5}>
-            <motion.div
-              initial={{ opacity: 0, x: 20, rotate: -5 }}
-              animate={{ opacity: 1, x: 0, rotate: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-100 md:h-96"
-            >
-              <Canvas
-                camera={{ position: [0, 2, 8], fov: 50 }}
+          <div className="relative w-full max-w-[520px] h-[420px] md:h-[520px] lg:h-[620px] overflow-hidden rounded-2xl">
+            {/* FloatingElement and motion.div removed to improve performance */}
+            {/* <Canvas
+                // camera={{ position: [0, 0, 8], fov: 100 }}
+                camera={{
+                  position: [0, 0.5, 9],
+                  fov: 40,
+                }}
                 className="w-full h-full"
                 gl={{ alpha: true, antialias: true }}
-                style={{ background: "transparent" }}
-              >
+                // style={{ background: "" }}
+              > */}
+            <Canvas
+              camera={{ position: [0, 0, 8], fov: 40 }}
+  className="
+  w-full h-full
+  bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.35),transparent_70%)]
+  dark:bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.25),transparent_70%)]
+"
+
+              gl={{ alpha: true, antialias: true }}
+            >
+              <ambientLight intensity={1.1} />
+              <directionalLight position={[5, 5, 5]} intensity={1.5} />
+              <directionalLight position={[-5, 5, -5]} intensity={0.8} />
+
+              <Suspense fallback={null}>
+                <Bounds fit clip margin={1.2}>
+                  <AnimatedModel
+                    modelPath="/trashbaggius_balloonius-_free_as_freedom.glb"
+                    scale={1.7}
+                    position={[0, -5, 0]}
+                    autoRotate
+                  />
+                </Bounds>
+              </Suspense>
+
+              <Environment preset="forest" />
+
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                autoRotate={false}
+                enableDamping={true}
+                dampingFactor={0.08}
+              />
+            </Canvas>
+
+            {/* 
                 <Suspense fallback={null}>
                   <ambientLight intensity={1.2} />
-                  <directionalLight 
-                    position={[10, 10, 5]} 
-                    intensity={2} 
+                  <directionalLight
+                    position={[10, 10, 5]}
+                    intensity={1.5}
+                    color="#360f5a"
                     castShadow
                   />
-                  <directionalLight 
-                    position={[-10, 5, -5]} 
-                    intensity={1} 
+                  <directionalLight
+                    position={[-10, 5, -5]}
+                    intensity={1}
+                    color="#360f5a"
                   />
                   <pointLight
                     position={[0, 5, 5]}
@@ -193,28 +232,31 @@ export default function Home() {
 
                   <Center>
                     <AnimatedModel
-                      modelPath="/tripod_-_war_of_the_worlds_2005_riganimated.glb"
-                      scale={0.10}
+                      // modelPath="/tripod_-_war_of_the_worlds_2005_riganimated.glb"
+                      modelPath="/trashbaggius_balloonius-_free_as_freedom.glb"
+                      scale={1.3}
+                      position={[0, 0.3, 0]}
+                      rotation={[0, Math.PI, 0]}
+                      autoRotate={true}
                     />
                   </Center>
 
-                  <Environment preset="sunset" />
+                  <Environment preset="forest" />
                   <OrbitControls
                     enableZoom={false}
                     enablePan={false}
                     autoRotate
-                    autoRotateSpeed={1}
+                    // autoRotateSpeed={1}
                     minPolarAngle={Math.PI / 2.5}
                     maxPolarAngle={Math.PI / 1.8}
                   />
                 </Suspense>
-              </Canvas>
+              </Canvas> */}
 
-              {/* Decorative elements */}
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl pointer-events-none"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div>
-            </motion.div>
-          </FloatingElement>
+            {/* Decorative elements */}
+            {/* <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl pointer-events-none"></div>
+            <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div> */}
+          </div>
         </div>
 
         {/* Scroll indicator - Fixed version */}

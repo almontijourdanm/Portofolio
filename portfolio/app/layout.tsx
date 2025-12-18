@@ -120,7 +120,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} style={{ position: "relative" }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

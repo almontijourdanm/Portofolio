@@ -75,9 +75,6 @@ export function AnimatedModel({
 
   // Play animations when component mounts
   useEffect(() => {
-    console.log(`Model: ${modelPath}`);
-    console.log(`Found ${names.length} animations:`, names);
-
     if (names.length > 0) {
       // Stop all animations first
       names.forEach((name) => {
@@ -171,7 +168,3 @@ export function AnimatedModel({
     </group>
   );
 }
-
-// Preload models
-useGLTF.preload("/trashbaggius_balloonius-_free_as_freedom.glb");
-useGLTF.preload("/tripod_-_war_of_the_worlds_2005_riganimated.glb");

@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useState, useEffect } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, Center, Bounds } from "@react-three/drei";
+import dynamic from "next/dynamic";
 import {
   Github,
   Linkedin,
@@ -13,7 +11,6 @@ import {
   Download,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AnimatedModel } from "@/components/animated-model";
 import ProjectCard from "@/components/project-card";
 import SkillBadge from "@/components/skill-badge";
 import TimelineItem from "@/components/timeline-item";
@@ -21,42 +18,52 @@ import ContactForm from "@/components/contact-form";
 import Navbar from "@/components/navbar";
 import AnimateOnScroll from "@/components/animate-on-scroll";
 import BlogSection from "@/components/blog-section";
-import HeroBackground from "@/components/hero-background";
-import ParticlesBackground from "@/components/particles-background";
-import TypingEffect from "@/components/typing-effect";
-import FloatingElement from "@/components/floating-element";
-import LoadingScreen from "@/components/loading-screen";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+
+const ParticlesBackground = dynamic(
+  () => import("@/components/particles-background"),
+  { ssr: false }
+);
+
+const TypingEffect = dynamic(() => import("@/components/typing-effect"), {
+  ssr: false,
+  loading: () => <span>Full Stack Developer</span>,
+});
+
+const HomeHeroScene = dynamic(() => import("@/components/home-hero-scene"), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full items-center justify-center rounded-2xl border border-blue-100 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:border-white/10 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+      <div className="flex flex-col items-center gap-4 px-6 text-center">
+        <Image
+          src="/icon0.svg"
+          alt="Almonti Jourdan logo"
+          width={96}
+          height={96}
+          priority
+          className="h-20 w-20"
+        />
+        <div>
+          <p className="text-base font-semibold text-slate-900 dark:text-white">
+            Interactive preview is loading
+          </p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            The rest of the page is ready immediately.
+          </p>
+        </div>
+      </div>
+    </div>
+  ),
+});
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [modelLoaded, setModelLoaded] = useState(false);
-
-  useEffect(() => {
-    // Only hide loading screen when model is loaded
-    if (modelLoaded) {
-      setIsLoading(false);
-    }
-  }, [modelLoaded]);
-
   return (
-    <>
-      <AnimatePresence mode="sync">
-        {isLoading && (
-          <LoadingScreen
-            onLoadingComplete={() => {}}
-            isModelLoaded={modelLoaded}
-          />
-        )}
-      </AnimatePresence>
-
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
-        transition={{ duration: 0.3 }}
-        className="min-h-screen bg-white dark:bg-gray-900 overflow-hidden"
-        style={{ visibility: isLoading ? "hidden" : "visible" }}
-      >
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.2 }}
+      className="min-h-screen bg-white dark:bg-gray-900 overflow-hidden"
+    >
         <Navbar />
 
         {/* Hero Section */}
@@ -64,7 +71,6 @@ export default function Home() {
           id="home"
           className="relative pt-28 pb-20 md:pt-36 md:pb-28 px-4 overflow-hidden"
         >
-          {/* <HeroBackground /> */}
           <ParticlesBackground />
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 place-items-center">
             <motion.div
@@ -190,99 +196,7 @@ export default function Home() {
               </div>
             </motion.div>
             <div className="relative w-full max-w-[520px] h-[420px] md:h-[520px] lg:h-[620px] overflow-hidden rounded-2xl">
-              {/* FloatingElement and motion.div removed to improve performance */}
-              {/* <Canvas
-                // camera={{ position: [0, 0, 8], fov: 100 }}
-                camera={{
-                  position: [0, 0.5, 9],
-                  fov: 40,
-                }}
-                className="w-full h-full"
-                gl={{ alpha: true, antialias: true }}
-                // style={{ background: "" }}
-              > */}
-              <Canvas
-                camera={{ position: [0, 0, 10], fov: 35 }}
-                className="
-  w-full h-full
-  bg-[radial-gradient(ellipse_at_bottom,rgba(139,92,246,0.35),transparent_70%)]
-  dark:bg-[radial-gradient(ellipse_at_bottom,rgba(168,85,247,0.25),transparent_70%)]
-"
-                gl={{ alpha: true, antialias: true }}
-              >
-                <ambientLight intensity={1.1} />
-                <directionalLight position={[5, 5, 5]} intensity={1.5} />
-                <directionalLight position={[-5, 5, -5]} intensity={0.8} />
-
-                <Suspense fallback={null}>
-                  <Bounds fit clip margin={1.2}>
-                    <AnimatedModel
-                      modelPath="/trashbaggius_balloonius-_free_as_freedom.glb"
-                      scale={2.4}
-                      position={[0, -5, 0]}
-                      autoRotate
-                      onLoaded={() => setModelLoaded(true)}
-                    />
-                  </Bounds>
-                </Suspense>
-
-                <Environment preset="forest" />
-
-                <OrbitControls
-                  enableZoom={false}
-                  enablePan={false}
-                  autoRotate={false}
-                  enableDamping={true}
-                  dampingFactor={0.08}
-                />
-              </Canvas>
-
-              {/* 
-                <Suspense fallback={null}>
-                  <ambientLight intensity={1.2} />
-                  <directionalLight
-                    position={[10, 10, 5]}
-                    intensity={1.5}
-                    color="#360f5a"
-                    castShadow
-                  />
-                  <directionalLight
-                    position={[-10, 5, -5]}
-                    intensity={1}
-                    color="#360f5a"
-                  />
-                  <pointLight
-                    position={[0, 5, 5]}
-                    intensity={500}
-                    color="#360f5a"
-                  />
-
-                  <Center>
-                    <AnimatedModel
-                      // modelPath="/tripod_-_war_of_the_worlds_2005_riganimated.glb"
-                      modelPath="/trashbaggius_balloonius-_free_as_freedom.glb"
-                      scale={1.3}
-                      position={[0, 0.3, 0]}
-                      rotation={[0, Math.PI, 0]}
-                      autoRotate={true}
-                    />
-                  </Center>
-
-                  <Environment preset="forest" />
-                  <OrbitControls
-                    enableZoom={false}
-                    enablePan={false}
-                    autoRotate
-                    // autoRotateSpeed={1}
-                    minPolarAngle={Math.PI / 2.5}
-                    maxPolarAngle={Math.PI / 1.8}
-                  />
-                </Suspense>
-              </Canvas> */}
-
-              {/* Decorative elements */}
-              {/* <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl pointer-events-none"></div>
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-purple-500/20 rounded-full blur-xl pointer-events-none"></div> */}
+              <HomeHeroScene />
             </div>
           </div>
 
@@ -611,7 +525,6 @@ export default function Home() {
             </p>
           </div>
         </footer>
-      </motion.main>
-    </>
+    </motion.main>
   );
 }

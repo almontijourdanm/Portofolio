@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import CosmicNebulaBackground from "@/components/cosmic-nebula-background";
+import SiteBackground from "@/components/site-background";
 // Or import any of the other background components:
 // import GeometricConstellationBackground from "@/components/geometric-constellation-background"
 // import FlowingWaveBackground from "@/components/flowing-wave-background"
@@ -128,7 +128,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Add your chosen background component */}
-          <CosmicNebulaBackground />
+          <SiteBackground />
           {children}
         </ThemeProvider>
       </body>

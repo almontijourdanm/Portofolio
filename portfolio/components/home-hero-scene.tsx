@@ -6,15 +6,15 @@ import { Canvas } from "@react-three/fiber";
 import { Bounds, Environment, OrbitControls, useGLTF } from "@react-three/drei";
 import { AnimatedModel } from "@/components/animated-model";
 
-declare global {
-  interface Window {
-    requestIdleCallback?: (
-      callback: IdleRequestCallback,
-      options?: IdleRequestOptions
-    ) => number;
-    cancelIdleCallback?: (handle: number) => void;
-  }
-}
+// declare global {
+//   interface Window {
+//     requestIdleCallback?: (
+//       callback: IdleRequestCallback,
+//       options?: IdleRequestOptions
+//     ) => number;
+//     cancelIdleCallback?: (handle: number) => void;
+//   }
+// }
 
 function StaticHeroVisual() {
   return (

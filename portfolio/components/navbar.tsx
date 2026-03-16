@@ -163,6 +163,13 @@ export default function Navbar() {
             >
               Contact
             </button>
+            <Link
+              href="/github"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors block text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Github
+            </Link>
           </div>
         </div>
       )}

@@ -401,6 +401,21 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <ProjectCard
+                title="Mitra Pilar's Website"
+                description="A real client company website built for Mitra Pilar to present services clearly, strengthen brand credibility, and provide a responsive browsing experience for potential customers."
+                technologies={[
+                  "Next.js",
+                  "TypeScript",
+                  "Tailwind CSS",
+                  "React",
+                ]}
+                images={["/Mitra Pilars SS.svg?height=400&width=600&text=Mitra+Pilar"]}
+                githubUrl="https://github.com/almontijourdanm"
+                liveUrl="https://mitrapilars.com/"
+                category="fullstack"
+                index={0}
+              />
+              <ProjectCard
                 title="Lume - 3D Product Website"
                 description="An immersive 3D product showcase with interactive ambient desk lamps. Features scroll-based animations, dynamic lighting transitions, and WebGL 3D models."
                 technologies={[
@@ -414,7 +429,7 @@ export default function Home() {
                 githubUrl="https://github.com/almontijourdanm/ambient-tree-desk-light"
                 liveUrl="https://lume.almontijourdanm.com/"
                 category="frontend"
-                index={0}
+                index={1}
               />
               <ProjectCard
                 title="ADYA JAYA Freight Forwarding"
@@ -429,7 +444,7 @@ export default function Home() {
                 githubUrl="https://github.com/almontijourdanm"
                 liveUrl="https://freightforwarding1.almontijourdanm.com/"
                 category="fullstack"
-                index={1}
+                index={2}
               />
               <ProjectCard
                 title="Jolt Jordan"
@@ -445,7 +460,7 @@ export default function Home() {
                 githubUrl="https://github.com/almontijourdanm/Jolt-jordan"
                 liveUrl="https://jolt.timmytech.fun/"
                 category="fullstack"
-                index={2}
+                index={3}
               />
             </div>
 

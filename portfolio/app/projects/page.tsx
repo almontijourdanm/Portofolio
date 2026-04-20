@@ -12,6 +12,26 @@ import { Button } from "@/components/ui/button"
 // Project data based exactly on CV
 const projects = [
   {
+    title: "Mitra Pilar's Website",
+    description:
+      "A real client company website developed for Mitra Pilar, focused on delivering a professional online presence, clear service communication, and responsive user experience for business visitors.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React", "Vercel"],
+    images: [
+      "/MitraPilars1.svg?height=400&width=600&text=Mitra+Pilar",
+      "/MitraPilars2.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+2",
+      "/MitraPilars3.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+3",
+      "/MitraPilars4.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+4",
+      "/MitraPilars5.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+5",
+      "/MitraPilars6.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+6",
+      "/MitraPilars7.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+7",
+      "/MitraPilars8.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+8",
+      "/MitraPilars9.svg?height=400&width=600&text=Mitra+Pilar+Screenshot+9",
+    ],
+    githubUrl: "https://github.com/almontijourdanm",
+    liveUrl: "https://mitrapilars.com/",
+    category: "fullstack" as ProjectCategory,
+  },
+  {
     title: "Lume - 3D Product Website",
     description:
       "An immersive 3D product showcase website featuring interactive ambient desk lamps. Built with React Three Fiber, it includes scroll-based animations, dynamic lighting transitions, and WebGL 3D models with mouse interaction. Features the Ambient Tree and Steampunk Robot lamp designs with smooth GSAP animations and responsive design.",
